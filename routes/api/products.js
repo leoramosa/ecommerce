@@ -9,6 +9,7 @@ router.get('/', async function (req, res, next) {
   const { tags } = req.query;
   console.log('req', req.query);
   try {
+    throw new Error('this is an error from the api');
     const products = await productService.getProducts({ tags });
 
     res.status(200).json({
@@ -53,7 +54,7 @@ router.post('/', async function (req, res, next) {
 });
 
 /* PUT product Id */
-router.get('/:productId', function (req, res, next) {
+router.put('/:productId', function (req, res, next) {
   const { productId } = req.params;
   const { body: product } = req;
   console.log('req', req.params, req.body);
@@ -69,7 +70,7 @@ router.get('/:productId', function (req, res, next) {
 });
 
 /* DELETE product Id */
-router.get('/:productId', function (req, res, next) {
+router.delete('/:productId', function (req, res, next) {
   const { productId } = req.params;
   console.log('req', req.params);
   try {
